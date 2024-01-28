@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_produtos
+    description: dimensão produtos
+    columns:
+      - name: id_produto
+        description: chave primária da dimensão funcionários
+        tests:
+          - unique
+          - not_null
+              
