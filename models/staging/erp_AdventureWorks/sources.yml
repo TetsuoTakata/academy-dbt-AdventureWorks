@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: erp 
+    description: Fonte SAP de vendas
+    schema: sap_adw
+    tables:
+      - name: product
+      - name: salesorderheader
+      - name: salesorderdetail
+      - name: creditcard
+      - name: salesorderheadersalesreason
+      - name: salesreason
+      - name: customer
+
+      - name: address
+      - name: person
