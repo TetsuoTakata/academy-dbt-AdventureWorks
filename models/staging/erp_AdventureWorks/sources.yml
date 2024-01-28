@@ -6,12 +6,16 @@ sources:
     schema: sap_adw
     tables:
       - name: product
+        columns:
+          - name: productid
+            tests:
+              - unique
+              - not_null       
       - name: salesorderheader
       - name: salesorderdetail
       - name: creditcard
       - name: salesorderheadersalesreason
       - name: salesreason
       - name: customer
-
       - name: address
       - name: person

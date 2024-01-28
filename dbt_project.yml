@@ -38,6 +38,14 @@ models:
     example:
       materialized: view
 
+    staging:
+      + materialized: view
+      + schema: staging
+
+    marts:
+      + materialized: table
+      + schema: marts
+
 
 seeds:
   my_new_project: # <-- Name of the project. If you renamed your project you have to change this as well
