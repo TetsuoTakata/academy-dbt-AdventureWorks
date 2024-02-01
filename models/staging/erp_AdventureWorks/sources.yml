@@ -12,10 +12,98 @@ sources:
               - unique
               - not_null       
       - name: salesorderheader
+        columns:
+          - name: salesorderid
+            tests:
+              - unique
+              - not_null
+          - name: territoryid
+            tests:
+              - unique
+              - not_null
+          - name: creditcardid
+            tests:
+              - unique
+              - not_null
       - name: salesorderdetail
+        columns:
+          - name: salesorderid
+            tests:
+              - unique
+              - not_null
+          - name: productid
+            tests:
+              - unique
+              - not_null
       - name: creditcard
+        columns:
+          - name: creditcardid
+            tests:
+              - unique
+              - not_null
       - name: salesorderheadersalesreason
+        columns:
+          - name: salesreasonid
+            tests:
+              - unique
+              - not_null
+          - name: salesorderid
+            tests:
+              - unique
+              - not_null
       - name: salesreason
+        columns:
+          - name: salesreasonid
+            tests:
+              - unique
+              - not_null
+      - name: salesterritory
+        columns:
+          - name: stateprovincyid
+            tests:
+              - unique
+              - not_null 
+          - name: salesreasonid
+            tests:
+              - unique
+              - not_null
+        columns:
+          - name: territoryid
+            tests:
+              - unique
+              - not_null
+      - name: stateprovince
+        columns:
+          - name: stateprovinceid
+            tests:
+              - unique
+              - not_null 
+          - name: territory
+            tests:
+              - unique
+              - not_null  
+      - name: countryregion
       - name: customer
+        columns:
+          - name: customerid
+            tests:
+              - unique
+              - not_null
+          - name: personid
+            tests:
+              - unique
+              - not_null
+          - name: storeid
+            tests:
+              - unique
+              - not_null
+          - name: territoryid
+            tests:
+              - unique
+              - not_null
       - name: address
-      - name: person
+        columns:
+          - name: addressid
+            tests:
+              - unique
+              - not_null
