@@ -5,7 +5,7 @@ models:
     description: dimensão produtos
     columns:
       - name: id_produto
-        description: chave primária da dimensão funcionários
+        description: chave primária da dimensão produtos
         tests:
           - unique
           - not_null

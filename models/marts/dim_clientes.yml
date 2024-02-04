@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_clientes
+    description: dimensão clientes
+    columns:
+      - name: id_cliente
+        description: chave primária da dimensão cliente
+        tests:
+          - unique
+          - not_null
+              

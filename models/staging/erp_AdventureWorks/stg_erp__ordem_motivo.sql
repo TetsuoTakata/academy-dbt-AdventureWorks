@@ -6,4 +6,6 @@ with
         from {{ source('erp', 'salesorderheadersalesreason') }}
     )
 select*
+    --count (id_venda) as total_pedido
 from fonte_ordem_motivo
+    

@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: int_pedidos
+    description: intermediaria com dados de pedidos
+    columns:
+      - name: sk_pedidos
+        description: chave surrogate da intermediária pedidos
+        tests:
+          - unique
+          - not_null

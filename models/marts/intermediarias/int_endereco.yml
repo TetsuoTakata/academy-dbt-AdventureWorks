@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: int_endereco
+    description: intermediaria com dados de endereço
+    columns:
+      - name: id_endereco
+        description: chave primária da intermediária endereço
+        tests:
+          - unique
+          - not_null
+              

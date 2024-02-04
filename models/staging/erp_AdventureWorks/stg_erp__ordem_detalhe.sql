@@ -12,3 +12,4 @@ with
     )
 select*
 from fonte_ordem_detalhes
+order by id_venda
