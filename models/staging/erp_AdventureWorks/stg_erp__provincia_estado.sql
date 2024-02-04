@@ -5,7 +5,7 @@ with
             , cast (territoryid as integer) as id_territorio
             , cast (stateprovincecode as string) as codigo_provincia_estado
             , cast (countryregioncode as string) as codigo_regiao_pais
-            , cast (name as string) as pais
+            , cast (name as string) as provincia_estado
         from {{ source('erp', 'stateprovince') }}
     )
 select *

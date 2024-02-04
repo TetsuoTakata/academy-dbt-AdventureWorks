@@ -1,9 +1,8 @@
 with
     fonte_motivos as (
         select
-            cast (salesreasonid as string) as id_venda_motivo
-            , cast (name as string) as nome
-            , cast (reasontype as string) as motivos 
+            cast (salesreasonid as integer) as id_venda_motivo
+            , cast (name as string) as motivo
         from {{ source('erp', 'salesreason') }}
     )
 select *
