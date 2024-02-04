@@ -23,4 +23,6 @@ with
         from {{ source('erp', 'salesorderheader') }}
     )
 select *
+   -- count (id_venda) as total_pedido
 from fonte_ordem
+--order by id_venda

@@ -4,8 +4,8 @@ models:
   - name: fct_vendas
     description: fato vendas
     columns:
-      - name: id_vendas
-        description: chave primária da fato vendas
+      - name: sk_pedido
+        description: chave surrogate da fato vendas
         tests:
           - unique
           - not_null
