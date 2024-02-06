@@ -80,51 +80,60 @@ with
         from joined_venda
     )
 
+    , transformacoes2 as (
+        select *
+            , total_liquido / count(id_venda) over(partition by id_venda) as total_liquido_ponderado
+            , total_ponderado / count(id_venda) over(partition by id_venda) as total_bruto_ponderado
+        from transformacoes
+    )
+
     , joined_final as (
         select
-            transformacoes.sk_pedido
-            ,transformacoes.id_venda
-            ,transformacoes.id_cliente
-            ,transformacoes.id_vendedor
-            ,transformacoes.id_endereco
-            ,transformacoes.id_cartao_credito
-            ,transformacoes.id_venda_motivo2
-            ,transformacoes.id_produto
-            ,transformacoes.id_provincia_estado
+            transformacoes2.sk_pedido
+            ,transformacoes2.id_venda
+            ,transformacoes2.id_cliente
+            ,transformacoes2.id_vendedor
+            ,transformacoes2.id_endereco
+            ,transformacoes2.id_cartao_credito
+            ,transformacoes2.id_venda_motivo2
+            ,transformacoes2.id_produto
+            ,transformacoes2.id_provincia_estado
             ,cliente.id_loja
-            ,transformacoes.quantidade
-            ,transformacoes.preco_unidade
-            ,transformacoes.desconto_unidade
-            ,transformacoes.total_bruto
-            ,transformacoes.total_liquido
-            ,transformacoes.subtotal
-            ,transformacoes.subtotal_ponderado
-            ,transformacoes.taxa
-            ,transformacoes.taxa_ponderado
-            ,transformacoes.frete
-            ,transformacoes.frete_ponderado
-            ,transformacoes.total
-            ,transformacoes.total_ponderado
-            ,transformacoes.data_pedido
-            ,transformacoes.data_entrega
-            ,transformacoes.data_envio
-            ,transformacoes.status
-            ,transformacoes.numero_pedido_compra
-            ,transformacoes.numero_conta
-            ,transformacoes.code_aprovacao_cartao
-            ,transformacoes.motivo
-            ,transformacoes.cidade
-            ,transformacoes.provincia_estado
-            ,transformacoes.pais
-            ,transformacoes.codigo_provincia_estado
-            ,transformacoes.codigo_regiao_pais
-            ,transformacoes.endereco1
-            ,transformacoes.endereco2
-            ,transformacoes.codigo_postal
-            ,transformacoes.tipo_cartao
-            ,transformacoes.numero_cartao
-            ,transformacoes.expira_mes
-            ,transformacoes.expira_ano           
+            ,transformacoes2.quantidade
+            ,transformacoes2.preco_unidade
+            ,transformacoes2.desconto_unidade
+            ,transformacoes2.total_bruto
+            ,transformacoes2.total_bruto_ponderado
+            ,transformacoes2.total_liquido
+            ,transformacoes2.total_liquido_ponderado
+            ,transformacoes2.subtotal
+            ,transformacoes2.subtotal_ponderado
+            ,transformacoes2.taxa
+            ,transformacoes2.taxa_ponderado
+            ,transformacoes2.frete
+            ,transformacoes2.frete_ponderado
+            ,transformacoes2.total
+            ,transformacoes2.total_ponderado
+            ,transformacoes2.data_pedido
+            ,transformacoes2.data_entrega
+            ,transformacoes2.data_envio
+            ,transformacoes2.status
+            ,transformacoes2.numero_pedido_compra
+            ,transformacoes2.numero_conta
+            ,transformacoes2.code_aprovacao_cartao
+            ,transformacoes2.motivo
+            ,transformacoes2.cidade
+            ,transformacoes2.provincia_estado
+            ,transformacoes2.pais
+            ,transformacoes2.codigo_provincia_estado
+            ,transformacoes2.codigo_regiao_pais
+            ,transformacoes2.endereco1
+            ,transformacoes2.endereco2
+            ,transformacoes2.codigo_postal
+            ,transformacoes2.tipo_cartao
+            ,transformacoes2.numero_cartao
+            ,transformacoes2.expira_mes
+            ,transformacoes2.expira_ano           
             ,cliente.nome_loja
             ,cliente.nome_vendedor
             ,produtos.nome_produto
@@ -141,11 +150,11 @@ with
             ,produtos.tempo_producao
             ,produtos.inicio_venda
             ,produtos.fim_venda
-        from transformacoes
+        from transformacoes2
         left join cliente on
-            transformacoes.id_cliente = cliente.id_cliente
+            transformacoes2.id_cliente = cliente.id_cliente
         left join produtos on
-            transformacoes.id_produto = produtos.id_produto
+            transformacoes2.id_produto = produtos.id_produto
     )
 
 select *
