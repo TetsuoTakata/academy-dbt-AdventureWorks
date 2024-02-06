@@ -83,7 +83,7 @@ with
     , transformacoes2 as (
         select *
             , total_liquido / count(id_venda) over(partition by id_venda) as total_liquido_ponderado
-            , total_ponderado / count(id_venda) over(partition by id_venda) as total_bruto_ponderado
+            , total_bruto / count(id_venda) over(partition by id_venda) as total_bruto_ponderado
         from transformacoes
     )
 
@@ -159,4 +159,4 @@ with
 
 select *
 from joined_final
-
+order by sk_pedido
