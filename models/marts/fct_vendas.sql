@@ -71,6 +71,8 @@ with
 
     , transformacoes as (
         select *
+            , quantidade*preco_unidade as total_bruto
+            , quantidade*preco_unidade*(1-desconto_unidade) as total_liquido
             , subtotal / count(id_venda) over(partition by id_venda) as subtotal_ponderado
             , taxa / count(id_venda) over(partition by id_venda) as taxa_ponderado
             , frete / count(id_venda) over(partition by id_venda) as frete_ponderado
@@ -93,6 +95,8 @@ with
             ,transformacoes.quantidade
             ,transformacoes.preco_unidade
             ,transformacoes.desconto_unidade
+            ,transformacoes.total_bruto
+            ,transformacoes.total_liquido
             ,transformacoes.subtotal
             ,transformacoes.subtotal_ponderado
             ,transformacoes.taxa
@@ -144,27 +148,6 @@ with
             transformacoes.id_produto = produtos.id_produto
     )
 
-   /* ,vendas_em_2011 as (
-        select 
-            sum(subtotal_ponderado) as total_bruto
-            ,sum(taxa_ponderado) as taxa_bruto
-            ,sum(frete_ponderado) as frete_bruto
-            --,joined_final.quantidade
-            --,joined_final.preco_unidade
-            --,joined_final.desconto_unidade 
-        from joined_final
-        where data_pedido between '2011-01-01 00:00:00.000' and '2011-12-31 00:00:00.000'
-    )
-select 
-    total_bruto
-    ,taxa_bruto
-    ,frete_bruto
-    , total_bruto+taxa_bruto+frete_bruto as total_bruto_final
-    , quantidade*preco_unidade*(1-desconto_unidade) as total_liquido
-from vendas_em_2011
-where total_bruto not between 12646112 and 12646113*/
-
 select *
-    --count (distinct id_venda) as total_pedido
 from joined_final
---order by sk_pedido
+
