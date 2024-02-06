@@ -22,6 +22,7 @@ with
             , cast (creditcardapprovalcode as string) as code_aprovacao_cartao
         from {{ source('erp', 'salesorderheader') }}
     )
+
 select *
    -- count (id_venda) as total_pedido
 from fonte_ordem

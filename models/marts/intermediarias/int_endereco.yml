@@ -9,4 +9,8 @@ models:
         tests:
           - unique
           - not_null
+      - name: id_provincia_estado
+        description: chave secundária da intermediária endereço
+      - name: id_territorio
+        description: chave secundária da intermediária endereço
               

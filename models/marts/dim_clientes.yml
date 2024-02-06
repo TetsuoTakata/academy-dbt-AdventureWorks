@@ -9,4 +9,11 @@ models:
         tests:
           - unique
           - not_null
-              
+      - name: id_vendedor
+        description: chave secundária da dimensão cliente
+      - name: id_loja
+        description: chave secundária da dimensão cliente
+      - name: nome_vendedor
+        description: coluna criada após concatenar as colunas nome, nome_meio e sobrenome
+      - name: nome_loja
+        description: nome das lojas

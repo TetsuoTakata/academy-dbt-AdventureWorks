@@ -57,12 +57,6 @@ sources:
             tests:
               - unique
               - not_null
-      - name: salesterritory
-        columns:
-          - name: territoryid
-            tests:
-              - unique
-              - not_null
       - name: stateprovince
         columns:
           - name: stateprovinceid
