@@ -132,12 +132,10 @@ with
             , criar_chave.id_cliente
             , criar_chave.id_territorio
             , criar_chave.id_vendedor
-            , criar_chave.id_conta_endereco
             , criar_chave.id_endereco
             , criar_chave.id_metodo_compra
             , criar_chave.id_cartao_credito
             , criar_chave.id_venda_detalhes
-            , criar_chave.id_oferta_especial
             , criar_chave.id_produto
             , criar_chave.id_venda_motivo2
             , criar_chave.quantidade
@@ -155,9 +153,17 @@ with
             , criar_chave.numero_conta
             , criar_chave.code_aprovacao_cartao
             , criar_chave.motivo
-           
         from criar_chave
     )
+
+    /*,vendas_em_2011 as (
+        select sum(total) as total_vendido
+        from alteracao
+        where data_pedido between '2011-01-01 00:00:00.000' and '2011-12-31 00:00:00.000'
+    )
+select total_vendido
+from vendas_em_2011
+where total_vendido not between 12646112 and 12646113*/
 
 select
     sk_pedido
@@ -165,12 +171,10 @@ select
     , alteracao.id_cliente
     , alteracao.id_territorio
     , alteracao.id_vendedor
-    , alteracao.id_conta_endereco
     , alteracao.id_endereco
     , alteracao.id_metodo_compra
     , alteracao.id_cartao_credito
     , alteracao.id_venda_detalhes
-    , alteracao.id_oferta_especial
     , alteracao.id_produto
     , alteracao.id_venda_motivo2
     , alteracao.quantidade

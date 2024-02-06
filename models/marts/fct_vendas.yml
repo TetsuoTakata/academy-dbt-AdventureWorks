@@ -9,4 +9,24 @@ models:
         tests:
           - unique
           - not_null
+      - name: total_ponderado
+        description: total divido pelo numero de produtos existe no mesmo pedido
+      - name: id_venda
+        description: chave secundária da fato vendas
+      - name: id_cliente
+        description: chave secundária da fato vendas
+      - name: id_vendedor
+        description: chave secundária da fato vendas
+      - name: id_endereco
+        description: chave secundária da fato vendas
+      - name: id_cartao_credito
+        description: chave secundária da fato vendas
+      - name: id_venda_motivo2
+        description: chave secundária da fato vendas
+      - name: id_produto
+        description: chave secundária da fato vendas
+      - name: id_provincia_estado
+        description: chave secundária da fato vendas
+      - name: id_loja
+        description: chave secundária da fato vendas
               

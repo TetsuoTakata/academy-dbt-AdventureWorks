@@ -4,8 +4,26 @@ models:
   - name: int_pedidos
     description: intermediaria com dados de pedidos
     columns:
-      - name: sk_pedidos
+      - name: sk_pedido
         description: chave surrogate da intermediária pedidos
         tests:
           - unique
           - not_null
+      - name: id_venda
+        description: chave secundária da intermediária pedidos
+      - name: id_cliente
+        description: achave secundária da intermediária pedidos
+      - name: id_territorio
+        description: chave secundária da intermediária pedidos
+      - name: id_vendedor
+        description: chave secundária da intermediária pedidos
+      - name: id_endereco
+        description: chave secundária da intermediária pedidos
+      - name: id_cartao_credito
+        description: chave secundária da intermediária pedidos
+      - name: id_venda_detalhes
+        description: chave secundária da intermediária pedidos
+      - name: id_produto
+        description: chave secundária da intermediária pedidos
+      - name: id_venda_motivo2
+        description: chave secundária da intermediária pedidos
