@@ -27,3 +27,33 @@ models:
         description: chave secundária da intermediária pedidos
       - name: id_venda_motivo2
         description: chave secundária da intermediária pedidos
+      - name: quantidade
+        description: quantidade solicidada do produto
+      - name: preco_unidade
+        description: preço unitátio do produto
+      - name: desconto_unidade
+        description: desconto por unidade do produto
+      - name: subtotal
+        description: valor da quantidade multiplicada pelo valor unitário do produto
+      - name: taxa
+        description: taxas a serem aplicadas
+      - name: frete
+        description: valor do frete para envio
+      - name: total
+        description: valor referente a soma do subtotal mais as taxas e o valor do frete
+      - name: data_pedido
+        description: data que foi realizado o pedido de compra do produto
+      - name: data_entrega
+        description: data que foi realizado a entrega do produto
+      - name: data_envio
+        description: data que foi enviado o produto para o cliente
+      - name: status
+        description: status
+      - name: numero_pedido_compra
+        description: numero do pedido de compra do produto
+      - name: numero_conta
+        description: número da conta que foi realiado o pedido
+      - name: code_aprovacao_cartao
+        description: código de aprovação de compra do cartão 
+      - name: motivo
+        description: motivo de compra do produto

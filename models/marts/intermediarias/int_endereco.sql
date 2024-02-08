@@ -14,6 +14,7 @@ with
         from {{ ref('stg_erp__pais') }}
     )
 
+    /*junção de endereço e província/estado*/
     , joined_endereco as (
         select
             stg_endereco.id_endereco
@@ -31,18 +32,21 @@ with
             stg_endereco.id_provincia_estado = stg_provincia_estado.id_provincia_estado
     )
 
+    /*junção de país à junção anterior*/
     , joined_endereco2 as (
         select
+            /*chaves*/
             joined_endereco.id_endereco
             , joined_endereco.id_provincia_estado
             , joined_endereco.id_territorio
+            /*categorias*/
+            , joined_endereco.endereco1
+            , joined_endereco.endereco2
             , joined_endereco.cidade
             , joined_endereco.provincia_estado 
             , stg_pais.pais           
             , joined_endereco.codigo_provincia_estado
             , joined_endereco.codigo_regiao_pais
-            , joined_endereco.endereco1
-            , joined_endereco.endereco2
             , joined_endereco.codigo_postal
         from joined_endereco
         left join stg_pais on

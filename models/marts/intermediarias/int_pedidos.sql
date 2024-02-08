@@ -19,6 +19,7 @@ with
         from {{ ref('stg_erp__ordem_detalhe') }}
     )
 
+    /*junção de motivo com ordem_motivo*/
     ,joined_motivo as (
         select
             stg_ordem_motivo.id_venda
@@ -29,6 +30,7 @@ with
             stg_motivo.id_venda_motivo = stg_ordem_motivo.id_venda_motivo
     )
     
+    /*junção anterior com pedidos*/
     , joined_pedidos as (
         select
             stg_pedidos.id_venda
@@ -57,6 +59,7 @@ with
             stg_pedidos.id_venda = joined_motivo.id_venda
     )
 
+    /*junção anterior com os detalhes do pedido*/
     ,joined_detalhe as (
         select 
             joined_pedidos.id_venda
@@ -92,6 +95,7 @@ with
             joined_pedidos.id_venda = stg_detalhe_pedido.id_venda
     )
 
+    /*criação de chave surrogate*/
     , criar_chave as (
         select
             joined_detalhe.id_venda
@@ -127,7 +131,9 @@ with
 
     , alteracao as (
         select
+            /*chave surrogate*/
             sk_pedido
+            /*chaves secundárias*/
             , criar_chave.id_venda
             , criar_chave.id_cliente
             , criar_chave.id_territorio
@@ -138,6 +144,11 @@ with
             , criar_chave.id_venda_detalhes
             , criar_chave.id_produto
             , criar_chave.id_venda_motivo2
+            /*datas*/
+            , criar_chave.data_pedido
+            , criar_chave.data_entrega
+            , criar_chave.data_envio
+            /*métricas*/
             , criar_chave.quantidade
             , criar_chave.preco_unidade
             , criar_chave.desconto_unidade
@@ -145,52 +156,15 @@ with
             , criar_chave.taxa
             , criar_chave.frete
             , criar_chave.total
-            , criar_chave.data_pedido
-            , criar_chave.data_entrega
-            , criar_chave.data_envio
+            /*categorias*/
+            , criar_chave.motivo
             , criar_chave.status
             , criar_chave.numero_pedido_compra
             , criar_chave.numero_conta
             , criar_chave.code_aprovacao_cartao
-            , criar_chave.motivo
         from criar_chave
     )
 
-    /*,vendas_em_2011 as (
-        select sum(total) as total_vendido
-        from alteracao
-        where data_pedido between '2011-01-01 00:00:00.000' and '2011-12-31 00:00:00.000'
-    )
-select total_vendido
-from vendas_em_2011
-where total_vendido not between 12646112 and 12646113*/
-
-select
-    sk_pedido
-    , alteracao.id_venda
-    , alteracao.id_cliente
-    , alteracao.id_territorio
-    , alteracao.id_vendedor
-    , alteracao.id_endereco
-    , alteracao.id_metodo_compra
-    , alteracao.id_cartao_credito
-    , alteracao.id_venda_detalhes
-    , alteracao.id_produto
-    , alteracao.id_venda_motivo2
-    , alteracao.quantidade
-    , alteracao.preco_unidade
-    , alteracao.desconto_unidade
-    , alteracao.subtotal
-    , alteracao.taxa
-    , alteracao.frete
-    , alteracao.total
-    , alteracao.data_pedido
-    , alteracao.data_entrega
-    , alteracao.data_envio
-    , alteracao.status
-    , alteracao.numero_pedido_compra
-    , alteracao.numero_conta
-    , alteracao.code_aprovacao_cartao
-    , alteracao.motivo
+select *
 from alteracao
 order by sk_pedido

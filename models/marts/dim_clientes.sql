@@ -14,6 +14,7 @@ with
         from {{ ref('stg_erp__vendedor') }}
     )
 
+    /*junção de vendedor e loja à staging cliente*/
     , joined_cliente as (
         select
             stg_cliente.id_cliente
@@ -30,11 +31,14 @@ with
             stg_cliente.id_vendedor = stg_vendedor.id_vendedor
     )
 
+    /*unir onome, nome do meio e sobrenome*/
     , juncao_nome as (
         select
+        /*chaves*/
             id_cliente
             , id_vendedor
             , id_loja
+            /*categoria*/
             , nome_loja
             , cast(nome as string) ||' '|| cast (nome_meio as string) ||' '|| cast (sobrenome as string) as nome_vendedor
         from joined_cliente
