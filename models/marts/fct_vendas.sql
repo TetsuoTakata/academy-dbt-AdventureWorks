@@ -24,6 +24,7 @@ with
         from {{ ref('stg_erp__cartao_credito') }}
     )
 
+    /*junção dos pedidos*/
     , joined_venda as (
         select 
             pedido.sk_pedido
@@ -69,6 +70,7 @@ with
             pedido.id_cartao_credito = cartao_credito.id_cartao_credito
     )
 
+    /*transformações das informaçãos*/
     , transformacoes as (
         select *
             , quantidade*preco_unidade as total_bruto
@@ -80,6 +82,7 @@ with
         from joined_venda
     )
 
+    /*transformações dos dados*/
     , transformacoes2 as (
         select *
             , total_liquido / count(id_venda) over(partition by id_venda) as total_liquido_ponderado
@@ -89,7 +92,9 @@ with
 
     , joined_final as (
         select
+            /*chave surrogate*/
             transformacoes2.sk_pedido
+            /*chave secundária*/
             ,transformacoes2.id_venda
             ,transformacoes2.id_cliente
             ,transformacoes2.id_vendedor
@@ -99,6 +104,11 @@ with
             ,transformacoes2.id_produto
             ,transformacoes2.id_provincia_estado
             ,cliente.id_loja
+            /*data*/
+            ,transformacoes2.data_pedido
+            ,transformacoes2.data_entrega
+            ,transformacoes2.data_envio
+            /*metrica*/
             ,transformacoes2.quantidade
             ,transformacoes2.preco_unidade
             ,transformacoes2.desconto_unidade
@@ -114,9 +124,10 @@ with
             ,transformacoes2.frete_ponderado
             ,transformacoes2.total
             ,transformacoes2.total_ponderado
-            ,transformacoes2.data_pedido
-            ,transformacoes2.data_entrega
-            ,transformacoes2.data_envio
+            ,produtos.tempo_producao
+            ,produtos.inicio_venda
+            ,produtos.fim_venda
+            /*categorias*/
             ,transformacoes2.status
             ,transformacoes2.numero_pedido_compra
             ,transformacoes2.numero_conta
@@ -138,8 +149,6 @@ with
             ,cliente.nome_vendedor
             ,produtos.nome_produto
             ,produtos.numero_produto
-            ,produtos.custo_padrao
-            ,produtos.preco_tabela
             ,produtos.tamanho
             ,produtos.unidade_medida_tamanho
             ,produtos.peso
@@ -147,9 +156,6 @@ with
             ,produtos.cor
             ,produtos.produto_estoque
             ,produtos.aviso_reabastecer
-            ,produtos.tempo_producao
-            ,produtos.inicio_venda
-            ,produtos.fim_venda
         from transformacoes2
         left join cliente on
             transformacoes2.id_cliente = cliente.id_cliente

@@ -9,4 +9,28 @@ models:
         tests:
           - unique
           - not_null
+      - name: nome_produtos
+        description: nome do produto
+      - name: numero_produto
+        description: codigo cadastral do produto
+      - name: tamanho
+        description: valor do tamanho do produto
+      - name: unidade_medida_tamanho
+        description: unidade de medida do tamanho do produto
+      - name: peso
+        description: valor peso do produto
+      - name: unidade_medida_peso
+        description: unidade de medida do valor do peso
+      - name: cor
+        description: descrição da cor do produto
+      - name: produto_estoque
+        description: quantidade de produto existente no estoque
+      - name: aviso_reabastecer
+        description: limite a partir do qual será emitido um aviso para reabastecer o estoque
+      - name: tempo_producao
+        description: tempo necessário para a produção do produto
+      - name: inicio_venda
+        description: data do início da venda do produto
+      - name: fim_venda
+        description: data de término da venda do produto
               

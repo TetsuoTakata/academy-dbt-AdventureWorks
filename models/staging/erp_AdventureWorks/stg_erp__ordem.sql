@@ -13,9 +13,9 @@ with
             , cast (taxamt as numeric) as taxa
             , cast (freight as numeric) as frete
             , cast (totaldue as numeric) as total
-            , cast (orderdate as string) as data_pedido
-            , cast (duedate as string) as data_entrega
-            , cast (shipdate as string) as data_envio
+            , cast (orderdate as timestamp) as data_pedido
+            , cast (duedate as timestamp) as data_entrega
+            , cast (shipdate as timestamp) as data_envio
             , cast (status as integer) as status
             , cast (purchaseordernumber as string) as numero_pedido_compra
             , cast (accountnumber as string) as numero_conta

@@ -1,15 +1,17 @@
 with
     stg_produtos as (
         select 
+            /*chave*/
             id_produto
+            /*categorias*/
             , nome_produto
             , numero_produto
-            , custo_padrao
-            , preco_tabela
+            /*metricas*/
             , tamanho
             , unidade_medida_tamanho
             , peso
             , unidade_medida_peso
+            /*netricas*/
             , cor
             , produto_estoque
             , aviso_reabastecer

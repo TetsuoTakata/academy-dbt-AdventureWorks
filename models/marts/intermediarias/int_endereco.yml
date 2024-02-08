@@ -13,4 +13,20 @@ models:
         description: chave secundária da intermediária endereço
       - name: id_territorio
         description: chave secundária da intermediária endereço
+      - name: cidade
+        description: nome da cidade
+      - name: provincia_estado 
+        description: nome da província/estado
+      - name: pais
+        description: nome do país           
+      - name: codigo_provincia_estado
+        description: abreviação da provícia/estado
+      - name: codigo_regiao_pais
+        description: abreviação do país
+      - name: endereco1
+        description: nome da rua
+      - name: endereco2
+        description: complementação do endereço
+      - name: codigo_postal
+        description: código postal 
               

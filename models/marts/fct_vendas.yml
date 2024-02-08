@@ -9,8 +9,6 @@ models:
         tests:
           - unique
           - not_null
-      - name: total_ponderado
-        description: total divido pelo numero de produtos existe no mesmo pedido
       - name: id_venda
         description: chave secundária da fato vendas
       - name: id_cliente
@@ -29,4 +27,102 @@ models:
         description: chave secundária da fato vendas
       - name: id_loja
         description: chave secundária da fato vendas
-              
+      - name: quantidade
+        description: quantidade solicitada do produto
+      - name: preco_unidade
+        description: valor por unidade do produto
+      - name: desconto_unidade
+        description: descontro por unidade de produto
+      - name: total_bruto
+        description: quantidade vezes o valor unitário
+      - name: total_bruto_ponderado
+        description: total bruto dividido pela quantidade de vezes que aparece o mesmo pedido
+      - name: total_liquido
+        description: total bruto menos o desconto
+      - name: total_liquido_ponderado
+        description: total líquido dividido pela quantidade de vezes que aparece o mesmo pedido
+      - name: subtotal
+        description: quantidade vezes o valor
+      - name: subtotal_ponderado
+        description: subtotal dividido pela quantidade de vezes que aparece o mesmo pedido
+      - name: taxa
+        description: valor de imposto a ser cobrado
+      - name: taxa_ponderado
+        description: taxa dividido pela quantidade de vezes que aparece o mesmo pedido
+      - name: frete
+        description: valor a ser cobrado pelo envio do produto
+      - name: frete_ponderado
+        description: frete dividido pela quantidade de vezes que aparece o mesmo pedido
+      - name: total
+        description: total bruto mais as taxas e frete
+      - name: total_ponderado
+        description: total dividido pela quantidade de vezes que aparece o mesmo pedido
+      - name: data_pedido
+        description: data de realização do pedido
+      - name: data_entrega
+        description: data de entrega do produto
+      - name: data_envio
+        description: data de envio do produto
+      - name: status
+        description: status do produto
+      - name: numero_pedido_compra
+        description: número de compra do pedido
+      - name: numero_conta
+        description: número da conta de pagamento
+      - name: code_aprovacao_cartao
+        description: código de aprovaçãodo cartão
+      - name: motivo
+        description: motivo da compra do produto
+      - name: cidade
+        description: cidade para envio do produto
+      - name: provincia_estado
+        description: província/estado do envio do produto
+      - name: pais
+        description: país do envio do pedido
+      - name: codigo_provincia_estado
+        description: código da província/estado
+      - name: codigo_regiao_pais
+        description: código da região/país
+      - name: endereco1
+        description: endereço de envio
+      - name: endereco2
+        description: complementação do envio
+      - name: codigo_postal
+        description: código postal do endereço de envio
+      - name: tipo_cartao
+        description: tipo de cartão utilizado para pagamento
+      - name: numero_cartao
+        description: numero do cartão de crédito
+      - name: expira_mes
+        description: mês de validade do cartão
+      - name: expira_ano           
+        description: ano de validade do cartão
+      - name: nome_loja
+        description: nome da loja
+      - name: nome_vendedor
+        description: nome do vendedor
+      - name: nome_produto
+        description: nome do produto
+      - name: numero_produto
+        description: número do produto
+      - name: tamanho
+        description: tamanho do produto
+      - name: unidade_medida_tamanho
+        description: unidade de medida do tamanho
+      - name: peso
+        description: peso do produto
+      - name: unidade_medida_peso
+        description: unidade de medida do peso
+      - name: cor
+        description: cor do produto
+      - name: produto_estoque
+        description: quantidade do produto em estoque
+      - name: aviso_reabastecer
+        description: minimo de produto do estoque para aviso
+      - name: tempo_producao
+        description: tempo para produção do produto
+      - name: inicio_venda
+        description: início da venda do produto
+      - name: fim_venda
+        description: fim da venda do produto
+      
