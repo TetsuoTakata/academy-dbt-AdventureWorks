@@ -26,7 +26,6 @@ with
             , stg_provincia_estado.codigo_regiao_pais
             , stg_endereco.endereco1
             , stg_endereco.endereco2
-            , stg_endereco.codigo_postal
         from stg_endereco
         left join stg_provincia_estado on
             stg_endereco.id_provincia_estado = stg_provincia_estado.id_provincia_estado
@@ -47,7 +46,6 @@ with
             , stg_pais.pais           
             , joined_endereco.codigo_provincia_estado
             , joined_endereco.codigo_regiao_pais
-            , joined_endereco.codigo_postal
         from joined_endereco
         left join stg_pais on
             joined_endereco.codigo_regiao_pais = stg_pais.codigo_regiao_pais

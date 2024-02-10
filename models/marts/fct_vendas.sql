@@ -11,7 +11,7 @@ with
 
     , endereco as (
         select *
-        from {{ ref('int_endereco') }}
+        from {{ ref('dim_endereco') }}
     )
 
     , pedido as (
@@ -44,12 +44,7 @@ with
             , pedido.frete
             , pedido.total
             , pedido.data_pedido
-            , pedido.data_entrega
-            , pedido.data_envio
             , pedido.status
-            , pedido.numero_pedido_compra
-            , pedido.numero_conta
-            , pedido.code_aprovacao_cartao
             , pedido.motivo
             , endereco.cidade
             , endereco.provincia_estado
@@ -58,11 +53,7 @@ with
             , endereco.codigo_regiao_pais
             , endereco.endereco1
             , endereco.endereco2
-            , endereco.codigo_postal
             , cartao_credito.tipo_cartao
-            , cartao_credito.numero_cartao
-            , cartao_credito.expira_mes
-            , cartao_credito.expira_ano
         from pedido
         left join endereco on
             pedido.id_endereco = endereco.id_endereco
@@ -76,9 +67,6 @@ with
             , quantidade*preco_unidade as total_bruto
             , quantidade*preco_unidade*(1-desconto_unidade) as total_liquido
             , subtotal / count(id_venda) over(partition by id_venda) as subtotal_ponderado
-            , taxa / count(id_venda) over(partition by id_venda) as taxa_ponderado
-            , frete / count(id_venda) over(partition by id_venda) as frete_ponderado
-            , total / count(id_venda) over(partition by id_venda) as total_ponderado
         from joined_venda
     )
 
@@ -98,16 +86,12 @@ with
             ,transformacoes2.id_venda
             ,transformacoes2.id_cliente
             ,transformacoes2.id_vendedor
-            ,transformacoes2.id_endereco
             ,transformacoes2.id_cartao_credito
             ,transformacoes2.id_venda_motivo2
             ,transformacoes2.id_produto
-            ,transformacoes2.id_provincia_estado
             ,cliente.id_loja
             /*data*/
             ,transformacoes2.data_pedido
-            ,transformacoes2.data_entrega
-            ,transformacoes2.data_envio
             /*metrica*/
             ,transformacoes2.quantidade
             ,transformacoes2.preco_unidade
@@ -118,20 +102,12 @@ with
             ,transformacoes2.total_liquido_ponderado
             ,transformacoes2.subtotal
             ,transformacoes2.subtotal_ponderado
-            ,transformacoes2.taxa
-            ,transformacoes2.taxa_ponderado
-            ,transformacoes2.frete
-            ,transformacoes2.frete_ponderado
-            ,transformacoes2.total
-            ,transformacoes2.total_ponderado
+            --,transformacoes2.taxa
+            --,transformacoes2.frete
+            --,transformacoes2.total
             ,produtos.tempo_producao
-            ,produtos.inicio_venda
-            ,produtos.fim_venda
             /*categorias*/
             ,transformacoes2.status
-            ,transformacoes2.numero_pedido_compra
-            ,transformacoes2.numero_conta
-            ,transformacoes2.code_aprovacao_cartao
             ,transformacoes2.motivo
             ,transformacoes2.cidade
             ,transformacoes2.provincia_estado
@@ -140,20 +116,11 @@ with
             ,transformacoes2.codigo_regiao_pais
             ,transformacoes2.endereco1
             ,transformacoes2.endereco2
-            ,transformacoes2.codigo_postal
-            ,transformacoes2.tipo_cartao
-            ,transformacoes2.numero_cartao
-            ,transformacoes2.expira_mes
-            ,transformacoes2.expira_ano           
+            ,transformacoes2.tipo_cartao           
             ,cliente.nome_loja
             ,cliente.nome_vendedor
             ,produtos.nome_produto
             ,produtos.numero_produto
-            ,produtos.tamanho
-            ,produtos.unidade_medida_tamanho
-            ,produtos.peso
-            ,produtos.unidade_medida_peso
-            ,produtos.cor
             ,produtos.produto_estoque
             ,produtos.aviso_reabastecer
         from transformacoes2
@@ -165,4 +132,3 @@ with
 
 select *
 from joined_final
-order by sk_pedido

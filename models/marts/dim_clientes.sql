@@ -34,7 +34,7 @@ with
     /*unir onome, nome do meio e sobrenome*/
     , juncao_nome as (
         select
-        /*chaves*/
+            /*chaves*/
             id_cliente
             , id_vendedor
             , id_loja
