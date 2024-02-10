@@ -6,7 +6,6 @@ with
             , cast(addressline1 as string) as endereco1
             , cast(addressline2 as string) as endereco2
             , cast(city as string) as cidade
-            , cast(postalcode as string) as codigo_postal
         from {{ source('erp', 'address') }}
     )
 select *

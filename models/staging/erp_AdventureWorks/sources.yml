@@ -92,6 +92,9 @@ sources:
             tests:
               - unique
               - not_null
+          - name: stateprovinceid
+              - unique
+              - not_null
       - name: store
         columns:
           - name: businessentityid

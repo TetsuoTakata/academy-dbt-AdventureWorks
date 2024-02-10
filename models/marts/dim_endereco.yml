@@ -11,8 +11,14 @@ models:
           - not_null
       - name: id_provincia_estado
         description: chave secundária da intermediária endereço
+        tests:
+          - unique
+          - not_null
       - name: id_territorio
-        description: chave secundária da intermediária endereço
+        description: chave secundária da intermediária 
+        tests:
+          - unique
+          - not_null
       - name: cidade
         description: nome da cidade
       - name: provincia_estado 
@@ -27,6 +33,4 @@ models:
         description: nome da rua
       - name: endereco2
         description: complementação do endereço
-      - name: codigo_postal
-        description: código postal 
               
