@@ -107,6 +107,9 @@ with
             ,id_venda_motivo
             ,id_venda_motivo2
             ,id_produto
+            ,id_cliente
+            ,id_endereco
+            ,id_cartao_credito
             ,data_pedido
             ,quantidade
             ,preco_unidade
