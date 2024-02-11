@@ -8,4 +8,4 @@ with
     )
 select total_bruto
 from vendas_em_2011
---where total_bruto not between 12646112 and 12646113
+where total_bruto not between 12646112 and 12646113
