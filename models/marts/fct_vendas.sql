@@ -36,11 +36,11 @@ with
             pedido.sk_pedido
             ,pedido.id_venda
             ,motivo.id_venda_motivo
-            --,pedido.id_cliente
+            ,pedido.id_cliente
             --,pedido.id_territorio
             --,pedido.id_vendedor
-            --,pedido.id_endereco
-            --,pedido.id_cartao_credito
+            ,pedido.id_endereco
+            ,pedido.id_cartao_credito
             ,pedido.id_produto
             --,cliente.id_vendedor
             --,cliente.id_loja
