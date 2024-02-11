@@ -9,8 +9,6 @@ models:
         tests:
           - unique
           - not_null
-      - name: id_venda
-        description: chave secundária da intermediária pedidos
       - name: id_cliente
         description: achave secundária da intermediária pedidos
       - name: id_territorio
@@ -22,8 +20,6 @@ models:
       - name: id_cartao_credito
         description: chave secundária da intermediária pedidos
       - name: id_produto
-        description: chave secundária da intermediária pedidos
-      - name: id_venda_motivo2
         description: chave secundária da intermediária pedidos
       - name: quantidade
         description: quantidade solicidada do produto
@@ -43,5 +39,3 @@ models:
         description: data que foi realizado o pedido de compra do produto
       - name: status
         description: status
-      - name: motivo
-        description: motivo de compra do produto

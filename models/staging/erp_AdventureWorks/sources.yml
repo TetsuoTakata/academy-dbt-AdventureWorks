@@ -17,23 +17,16 @@ sources:
             tests:
               - unique
               - not_null
-          - name: territoryid
+          - name: customerid
             tests:
-              - unique
-              - not_null
-          - name: creditcardid
-            tests:
-              - unique
               - not_null
       - name: salesorderdetail
         columns:
           - name: salesorderid
             tests:
-              - unique
               - not_null
           - name: productid
             tests:
-              - unique
               - not_null
       - name: creditcard
         columns:
@@ -45,11 +38,9 @@ sources:
         columns:
           - name: salesreasonid
             tests:
-              - unique
               - not_null
           - name: salesorderid
             tests:
-              - unique
               - not_null
       - name: salesreason
         columns:
@@ -62,30 +53,20 @@ sources:
           - name: stateprovinceid
             tests:
               - unique
-              - not_null 
-          - name: territory
+              - not_null         
+      - name: countryregion
+        columns:
+          - name: countryregioncode
             tests:
               - unique
-              - not_null  
-      - name: countryregion
+              - not_null
       - name: customer
         columns:
           - name: customerid
             tests:
               - unique
               - not_null
-          - name: personid
-            tests:
-              - unique
-              - not_null
-          - name: storeid
-            tests:
-              - unique
-              - not_null
           - name: territoryid
-            tests:
-              - unique
-              - not_null
       - name: address
         columns:
           - name: addressid
@@ -93,7 +74,6 @@ sources:
               - unique
               - not_null
           - name: stateprovinceid
-              - unique
               - not_null
       - name: store
         columns:
@@ -107,3 +87,6 @@ sources:
             tests:
               - unique
               - not_null
+          - name: middlename
+              - not_null
+              

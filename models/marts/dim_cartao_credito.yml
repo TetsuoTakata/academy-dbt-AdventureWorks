@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dim_cartao_credito
+    description: dimensão cartão de crédito
+    columns:
+      - name: id_cartao_credito
+        description: chave primária da dimensão cartao de crédito
+        tests:
+          - unique
+          - not_null

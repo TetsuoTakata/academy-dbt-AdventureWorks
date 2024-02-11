@@ -14,43 +14,27 @@ with
         from {{ ref('stg_erp__pais') }}
     )
 
-    /*junção de endereço e província/estado*/
+    /*junção de endereço, província/estado e país*/
     , joined_endereco as (
         select
+            /*chaves*/
             stg_endereco.id_endereco
-            ,stg_provincia_estado.id_provincia_estado
+            , stg_provincia_estado.id_provincia_estado
             , stg_provincia_estado.id_territorio
-            , stg_endereco.cidade
-            , stg_provincia_estado.provincia_estado         
-            , stg_provincia_estado.codigo_provincia_estado
-            , stg_provincia_estado.codigo_regiao_pais
+            /*categorias*/
             , stg_endereco.endereco1
             , stg_endereco.endereco2
-        from stg_endereco
-        left join stg_provincia_estado on
-            stg_endereco.id_provincia_estado = stg_provincia_estado.id_provincia_estado
-    )
-
-    /*junção de país à junção anterior*/
-    , joined_endereco2 as (
-        select
-            /*chaves*/
-            joined_endereco.id_endereco
-            , joined_endereco.id_provincia_estado
-            , joined_endereco.id_territorio
-            /*categorias*/
-            , joined_endereco.endereco1
-            , joined_endereco.endereco2
-            , joined_endereco.cidade
-            , joined_endereco.provincia_estado 
+            , stg_endereco.cidade
+            , stg_provincia_estado.provincia_estado 
             , stg_pais.pais           
-            , joined_endereco.codigo_provincia_estado
-            , joined_endereco.codigo_regiao_pais
-        from joined_endereco
+            , stg_provincia_estado.codigo_provincia_estado
+            , stg_provincia_estado.codigo_regiao_pais
+        from  stg_provincia_estado
+        left join stg_endereco on
+            stg_provincia_estado.id_provincia_estado = stg_endereco.id_provincia_estado
         left join stg_pais on
-            joined_endereco.codigo_regiao_pais = stg_pais.codigo_regiao_pais
-
+            stg_provincia_estado.codigo_regiao_pais = stg_pais.codigo_regiao_pais
     )
 select *
-from joined_endereco2
+from joined_endereco
 

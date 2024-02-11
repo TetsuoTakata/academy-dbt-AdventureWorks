@@ -29,9 +29,29 @@ with
             stg_cliente.id_loja = stg_loja.id_loja
         left join stg_vendedor on
             stg_cliente.id_vendedor = stg_vendedor.id_vendedor
+    
     )
 
     /*unir onome, nome do meio e sobrenome*/
+    , modificacao as (
+        select
+            /*chaves*/
+            id_cliente
+            , id_vendedor
+            , id_loja
+            /*categoria*/
+            , nome_loja
+            , nome
+            , nome_meio
+            , sobrenome
+            ,case 
+                when nome_meio is null
+                then ' '
+                else nome_meio
+            end as nome_meio2
+        from joined_cliente
+    )
+
     , juncao_nome as (
         select
             /*chaves*/
@@ -40,8 +60,8 @@ with
             , id_loja
             /*categoria*/
             , nome_loja
-            , cast(nome as string) ||' '|| cast (nome_meio as string) ||' '|| cast (sobrenome as string) as nome_vendedor
-        from joined_cliente
+            , cast(nome as string) ||' '|| cast (nome_meio2 as string) ||' '|| cast (sobrenome as string) as nome_vendedor
+        from modificacao
     )
 
 select *
