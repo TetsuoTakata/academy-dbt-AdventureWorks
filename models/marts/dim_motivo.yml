@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: dim_motivo
+    description: dimensão motivo
+    columns:
+      - name: sk_pedido
+        description: chave surrogate da dimensaão motivo
+      - name: id_venda
+        description: chave estrangeira da dimensaão motivo
+        tests:
+          - not_null
+      

@@ -1,4 +1,4 @@
-with
+/*with
     stg_pedidos2 as(
         select *
         from {{ ref('stg_erp__ordem') }}
@@ -37,4 +37,4 @@ with
     )
 
 select sum(soma_coluna)
-from soma
+from soma*/

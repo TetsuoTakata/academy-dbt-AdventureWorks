@@ -2,8 +2,8 @@
 
 with
     vendas_em_2011 as (
-        select sum(teste1) as total_bruto
-        from {{ ref('int_pedidos') }}
+        select sum(total_bruto_ponderado) as total_bruto
+        from {{ ref('fct_vendas') }}
         where data_pedido between '2011-01-01' and '2011-12-31'
     )
 select total_bruto

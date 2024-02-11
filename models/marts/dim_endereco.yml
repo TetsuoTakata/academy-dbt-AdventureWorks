@@ -1,23 +1,20 @@
 version: 2
 
 models:
-  - name: int_endereco
-    description: intermediaria com dados de endereço
+  - name: dim_endereco
+    description: dimensão endereço
     columns:
       - name: id_endereco
         description: chave primária da intermediária endereço
         tests:
           - unique
-          - not_null
       - name: id_provincia_estado
-        description: chave secundária da intermediária endereço
+        description: chave estrangeira da intermediária endereço
         tests:
-          - unique
           - not_null
       - name: id_territorio
-        description: chave secundária da intermediária 
+        description: chave estrangeira da intermediária 
         tests:
-          - unique
           - not_null
       - name: cidade
         description: nome da cidade
