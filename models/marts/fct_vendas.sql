@@ -93,8 +93,8 @@ with
             , coalesce (joined_venda.id_venda_motivo, 0) as id_venda_motivo2
             , quantidade*preco_unidade as total_bruto
             , quantidade*preco_unidade*(1-desconto_unidade) as total_liquido
-            , subtotal / count(id_venda) over(partition by id_venda) as subtotal_ponderado
-            , (quantidade*preco_unidade*(1-desconto_unidade)) / count(id_venda) over(partition by id_venda) as total_liquido_ponderado
+            , subtotal / count(sk_pedido) over(partition by sk_pedido) as subtotal_ponderado
+            , (quantidade*preco_unidade*(1-desconto_unidade)) / count(sk_pedido) over(partition by sk_pedido) as total_liquido_ponderado
             , (quantidade*preco_unidade) / count(sk_pedido) over(partition by sk_pedido) as total_bruto_ponderado
         from joined_venda
     )
@@ -142,6 +142,5 @@ with
             ,tipo_cartao
         from transformacoes
     )
-
 select *
 from final
